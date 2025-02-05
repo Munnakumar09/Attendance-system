@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Attendance - AI Attendance System</title>
+    <style>
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #0f172a;
+    color: #e5e7eb;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    background: #1e293b;
+    color: #facc15;
+    padding: 20px 0;
+    border-radius: 8px 8px 0 0;
+}
+
+h1 {
+    margin: 0;
+}
+
+/* Camera Feed */
+#camera-feed {
+    width: 100%;
+    height: 300px;
+    background: #1e293b;
+    border: 2px solid #4a5568;
+    border-radius: 8px;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e5e7eb;
+}
+
+/* Status Message */
+.status-message {
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px;
+    background: #334155;
+    border: 1px solid #4a5568;
+    border-radius: 4px;
+}
+
+/* Manual Entry Form */
+.manual-entry {
+    margin-top: 20px;
+    padding: 20px;
+    background: #1e293b;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #4a5568;
+    border-radius: 4px;
+    background: #334155;
+    color: #e5e7eb;
+}
+
+button {
+    padding: 10px 20px;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #4338ca;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px 0;
+    background: #1e293b;
+    border-radius: 0 0 8px 8px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Mark Attendance</h1>
+        </header>
+
+        <main>
+            <section class="mark-attendance">
+                <h2>Scan Face or RFID to Mark Attendance</h2>
+                <div id="camera-feed">
+                    <!-- Camera feed will be displayed here -->
+                </div>
+
+                <div class="status-message" id="status-message">
+                    Awaiting Scan...
+                </div>
+
+                <div class="manual-entry">
+                    <h3>Manual Entry</h3>
+                    <form id="manual-entry-form">
+                        <label for="student-id">Student ID:</label>
+                        <input type="text" id="student-id" name="student-id" required>
+                        <button type="submit">Mark Attendance</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 AI Attendance System</p>
+        </footer>
+    </div>
+
+    <script>
+        async function markAttendance(event) {
+            event.preventDefault();
+            const studentId = document.getElementById('student-id').value;
+            const response = await fetch('/mark-attendance', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: studentId })
+            });
+            const result = await response.json();
+            document.getElementById('status-message').innerText = result.message;
+        }
+
+        document.getElementById('manual-entry-form').addEventListener('submit', markAttendance);
+    </script>
+</body>
+</html>

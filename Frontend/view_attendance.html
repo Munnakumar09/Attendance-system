@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Attendance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #f5f5f5;
+        }
+
+        .container {
+            margin: 20px;
+            padding: 20px;
+            background-color: #1e1e2e;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #ffc107;
+        }
+
+        .search-bar input {
+            padding: 8px;
+            width: 300px;
+            border: 1px solid #ffc107;
+            border-radius: 5px;
+            background-color: #2b2b3b;
+            color: #f5f5f5;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: #ffeb3b;
+        }
+
+        .table-container {
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        table th {
+            background-color: #27293d;
+            color: #ffc107;
+        }
+
+        table tr:hover {
+            background-color: #333;
+        }
+
+        .pagination {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .pagination button {
+            padding: 8px 12px;
+            border: none;
+            background-color: #ffc107;
+            color: #121212;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .pagination button:hover {
+            background-color: #ffeb3b;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>View Attendance</h1>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search by name, ID, or date...">
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table id="attendanceTable">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Class</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>John Doe</td>
+                        <td>2025-01-04</td>
+                        <td>Present</td>
+                        <td>10-A</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>Jane Smith</td>
+                        <td>2025-01-04</td>
+                        <td>Absent</td>
+                        <td>10-A</td>
+                    </tr>
+                    <!-- Additional rows can be dynamically added -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination">
+            <button id="prevPage">&laquo; Previous</button>
+            <button id="nextPage">Next &raquo;</button>
+        </div>
+    </div>
+
+    <script>
+        // Search Functionality
+        const searchInput = document.getElementById('searchInput');
+        const attendanceTable = document.getElementById('attendanceTable');
+
+        searchInput.addEventListener('input', () => {
+            const filter = searchInput.value.toLowerCase();
+            const rows = attendanceTable.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) { // Skip the header row
+                const cells = rows[i].getElementsByTagName('td');
+                let match = false;
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].textContent.toLowerCase().includes(filter)) {
+                        match = true;
+                        break;
+                    }
+                }
+                rows[i].style.display = match ? '' : 'none';
+            }
+        });
+
+        // Pagination Logic (Placeholder)
+        const prevPageButton = document.getElementById('prevPage');
+        const nextPageButton = document.getElementById('nextPage');
+
+        prevPageButton.addEventListener('click', () => {
+            alert('Previous page functionality not implemented yet.');
+        });
+
+        nextPageButton.addEventListener('click', () => {
+            alert('Next page functionality not implemented yet.');
+        });
+    </script>
+</body>
+</html>

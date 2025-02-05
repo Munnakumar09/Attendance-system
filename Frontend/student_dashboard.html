@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - AI Attendance System</title>
+    <style>
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #0f172a;
+    color: #e5e7eb;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    background: #1e293b;
+    color: #facc15;
+    padding: 20px 0;
+    border-radius: 8px 8px 0 0;
+}
+
+h1 {
+    margin: 0;
+}
+
+/* Dashboard Options */
+.dashboard-options {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+button {
+    padding: 10px 20px;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #4338ca;
+}
+
+/* Attendance Records */
+.attendance-records {
+    margin-top: 20px;
+    padding: 20px;
+    background: #1e293b;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+    margin-bottom: 10px;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #4a5568;
+    text-align: center;
+}
+
+th {
+    background-color: #334155;
+    font-weight: bold;
+    color: #facc15;
+}
+
+tr:nth-child(even) {
+    background-color: #293145;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px 0;
+    background: #1e293b;
+    border-radius: 0 0 8px 8px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Student Dashboard</h1>
+        </header>
+
+        <main>
+            <section class="dashboard">
+                <h2>Welcome, Student!</h2>
+                <div class="dashboard-options">
+                    <button onclick="viewAttendance()">View Attendance</button>
+                    <button onclick="updateProfile()">Update Profile</button>
+                    <button onclick="logout()">Logout</button>
+                </div>
+            </section>
+
+            <section class="attendance-records">
+                <h3>Your Attendance Records</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attendance-records">
+                        <!-- Dynamic data will be loaded here -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 AI Attendance System</p>
+        </footer>
+    </div>
+
+    <script>
+        async function fetchAttendance() {
+            const response = await fetch('/attendance');
+            const data = await response.json();
+            const recordsTable = document.getElementById('attendance-records');
+            recordsTable.innerHTML = '';
+            data.forEach(record => {
+                const row = `<tr><td>${record.date}</td><td>${record.status}</td></tr>`;
+                recordsTable.innerHTML += row;
+            });
+        }
+
+        function viewAttendance() {
+            fetchAttendance();
+        }
+
+        function updateProfile() {
+            alert('Redirecting to profile update page.');
+        }
+
+        function logout() {
+            alert('Logging out...');
+            window.location.href = '/login';
+        }
+
+        window.onload = fetchAttendance;
+    </script>
+</body>
+</html>

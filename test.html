@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <h2>Dashboard</h2>
+            <ul>
+                <li><a href="#" id="home">🏠 Home</a></li>
+                <li><a href="#" id="attendance">📅 My Attendance</a></li>
+                <li><a href="#" id="grades">📊 My Grades</a></li>
+                <li><a href="#" id="assignments">📝 Assignments</a></li>
+                <li><a href="#" id="notifications">🔔 Notifications</a></li>
+                <li><a href="#" id="profile">👤 Profile</a></li>
+                <li><a href="#" id="logout">🚪 Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <header>
+                <h1>Welcome, Student Name</h1>
+                <p>Your personalized student dashboard.</p>
+            </header>
+            <section id="content-area">
+                <!-- Home Section -->
+                <div id="home-section" class="section active">
+                    <h2>Overview</h2>
+                    <p>Here’s a quick look at your academic progress:</p>
+                    <div class="cards">
+                        <div class="card">
+                            <h3>Attendance</h3>
+                            <p>92%</p>
+                        </div>
+                        <div class="card">
+                            <h3>Upcoming Assignment</h3>
+                            <p>Math Homework (Due in 2 Days)</p>
+                        </div>
+                        <div class="card">
+                            <h3>Next Exam</h3>
+                            <p>Physics (In 5 Days)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Attendance Section -->
+                <div id="attendance-section" class="section">
+                    <h2>Attendance Summary</h2>
+                    <p>Your current attendance:</p>
+                    <div class="chart">
+                        <!-- Attendance Pie Chart (Insert Chart.js or similar here) -->
+                        <p>[Attendance Chart Placeholder]</p>
+                    </div>
+                </div>
+
+                <!-- Grades Section -->
+                <div id="grades-section" class="section">
+                    <h2>My Grades</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th>Grade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mathematics</td>
+                                <td>A</td>
+                            </tr>
+                            <tr>
+                                <td>Physics</td>
+                                <td>B+</td>
+                            </tr>
+                            <tr>
+                                <td>Chemistry</td>
+                                <td>A-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Assignments Section -->
+                <div id="assignments-section" class="section">
+                    <h2>Assignments</h2>
+                    <ul>
+                        <li>Math Homework (Due in 2 Days)</li>
+                        <li>Physics Lab Report (Due in 4 Days)</li>
+                        <li>Chemistry Quiz Prep (Ongoing)</li>
+                    </ul>
+                </div>
+
+                <!-- Notifications Section -->
+                <div id="notifications-section" class="section">
+                    <h2>Notifications</h2>
+                    <p>No new notifications.</p>
+                </div>
+
+                <!-- Profile Section -->
+                <div id="profile-section" class="section">
+                    <h2>My Profile</h2>
+                    <p>View and update your personal details here.</p>
+                    <ul>
+                        <li>Name: John Doe</li>
+                        <li>Student ID: 123456</li>
+                        <li>Email: john.doe@example.com</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
