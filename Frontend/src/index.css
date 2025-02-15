@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: exo2;
+    src: url(./Exo2.ttf);
+}
+
+*{
+    font-family: exo2;
+}
